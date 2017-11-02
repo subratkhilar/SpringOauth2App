@@ -33,7 +33,7 @@ public class PartyController {
 		if (party != null) {
 			return new ResponseEntity<>(partyRepo.findOne(id), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(party, HttpStatus.NOT_FOUND);
 		}
 	}
 

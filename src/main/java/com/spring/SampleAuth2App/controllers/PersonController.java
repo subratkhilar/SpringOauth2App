@@ -2,6 +2,7 @@ package com.spring.SampleAuth2App.controllers;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +45,7 @@ public class PersonController {
 		if (person != null) {
 			return new ResponseEntity<>(personRepo.findOne(id), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(person, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -74,11 +75,11 @@ public class PersonController {
 			@ApiImplicitParam(name = "Authorization", paramType = "header", value = "bearer ", dataType = "string", required = true) })
 	public ResponseEntity<Collection<Party>> getPersonParties(@PathVariable long id) {
 		Person person = personRepo.findOne(id);
-
+		Set<Party> parties =null;
 		if (person != null) {
 			return new ResponseEntity<>(person.getParties(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(parties, HttpStatus.NOT_FOUND);
 		}
 	}
 
